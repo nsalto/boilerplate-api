@@ -1,5 +1,7 @@
 import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
+import helmet from "helmet";
+
 import routes from "./routes/index";
 import handleError from "./middlewares/error";
 
@@ -7,6 +9,7 @@ const app = express();
 
 // Middlewares
 app.use(cors());
+app.use(helmet());
 
 app.use(
     express.urlencoded({
