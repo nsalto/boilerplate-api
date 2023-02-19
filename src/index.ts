@@ -1,6 +1,8 @@
 import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import helmet from "helmet";
+import passport from "passport";
+import session from "express-session";
 
 import routes from "./routes/index";
 import handleError from "./middlewares/error";
@@ -24,6 +26,27 @@ app.use(
         limit: "5mb",
     })
 );
+
+/* app.use(
+    session({
+        secret: process.env.SESSION_SECRET!,
+        resave: false,
+        saveUninitialized: false,
+    })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Configurar rutas
+app.get("/", (req, res) => {
+    res.send("¡La aplicación está funcionando correctamente!");
+});
+
+app.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }));
+
+app.get("/auth/google/callback", passport.authenticate("google", { failureRedirect: "/login" }), (req, res) => {
+    res.redirect("/");
+}); */
 
 app.use("/api", routes);
 
