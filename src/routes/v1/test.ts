@@ -1,9 +1,13 @@
 import { Router } from "express";
 import { authenticateUser } from "../../middlewares/auth";
-const businessRoutes = Router();
+import { register } from "../../controllers/authController";
 
-businessRoutes.get("/", authenticateUser, (req, res) => {
+const router = Router();
+
+router.get("/", authenticateUser, (req, res) => {
     console.log("asdasdsadasd");
 });
 
-export default businessRoutes;
+router.post("/register", register)
+
+export default router;
