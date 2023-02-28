@@ -1,6 +1,7 @@
 import { Strategy } from "passport-local";
-import dbConnection from "database/connection";
+import dbConnection from "../database/connection";
 import { compareSync } from "bcrypt";
+import { User } from "../entities/User.entity";
 
 export const localStrategy = new Strategy(
     {
@@ -8,7 +9,7 @@ export const localStrategy = new Strategy(
         passwordField: "password",
     },
     async (email, password, done) => {
-        const userRepository = dbConnection.getRepository("User");
+        const userRepository = dbConnection.getRepository(User);
         const user = await userRepository.findOne({ where: { email } });
 
         if (!user) {

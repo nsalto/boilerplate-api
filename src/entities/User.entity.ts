@@ -1,12 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({ name: "users", schema: "private" })
 export class User {
-    @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+/*     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
     created_at: Date;
 
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP", onUpdate: "CURRENT_TIMESTAMP" })
-    updated_at: Date;
+    updated_at: Date; */
 
     @PrimaryGeneratedColumn()
     id: number;
@@ -23,7 +23,7 @@ export class User {
     @Column({ type: "boolean", default: false })
     is_active: boolean;
 
-    @Column({ length: 20, default: "user" })
+    @Column({ length: 20, default: "authenticated" })
     role: string;
 
     @Column({ length: 255, nullable: true })
